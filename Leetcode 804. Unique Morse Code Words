@@ -1,0 +1,37 @@
+class Solution {
+public:
+    int uniqueMorseRepresentations(vector<string>& words) {
+        
+         // iterate on each element of our given vector
+        
+       // concatenate = map[s[1]] + map[s[2]] this will again have a loop.
+        
+        // add this word to a unordered set (cause sets remove any duplicates)
+        
+        // finally get the size of set and that is our ans.
+        
+        
+        vector<string> map ({".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."});
+        
+        unordered_set<string> UniqueTransformations;
+            
+        for(int i=0; i<words.size(); i++){
+            
+            string transformation = "";
+           
+            for(int j=0; j<words[i].length(); j++){
+                
+                int x = int(words[i][j])-97; // hashing of letters from a-z to 0-25
+                
+                transformation.append(map[x]);
+                   
+            }
+            
+            UniqueTransformations.insert(transformation);
+            
+        }
+        
+        return UniqueTransformations.size();
+        
+    }
+};
