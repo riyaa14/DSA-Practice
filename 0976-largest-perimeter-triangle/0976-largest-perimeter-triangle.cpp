@@ -4,7 +4,6 @@ public:
         
         sort(nums.begin(), nums.end());
         
-        // int largestSide = nums[0], side1 = nums[1], side2 = nums[2];
         
         int i = nums.size()-3, j = nums.size()-1;
         
