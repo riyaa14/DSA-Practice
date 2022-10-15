@@ -14,27 +14,49 @@ public:
         
         if(!head->next or !head) return nullptr;
         
-        ListNode* tail = head;
-        int totalNodes = 0;
-        while(tail){
-            tail = tail->next;
-            totalNodes++;
-        }
+        // APPROACH 1 
         
-        int k = totalNodes - n; 
+//         ListNode* tail = head;
+//         int totalNodes = 0;
+//         while(tail){
+//             tail = tail->next;
+//             totalNodes++;
+//         }
         
-        if(k == 0) return head->next;
+//         int k = totalNodes - n; 
         
-        ListNode* curr = head;
+//         if(k == 0) return head->next;
+        
+//         ListNode* curr = head;
+//         ListNode* prev = nullptr;
+        
+//         while(k--){
+//            curr = curr->next;
+//            if(!prev) prev = head;
+//            else prev = prev->next;
+//         }
+        
+//         prev->next = curr->next;
+        
+        // APPROACH 2 - ONE PASS
+        
+        ListNode* slow = head;
         ListNode* prev = nullptr;
+        ListNode* fast = head;
         
-        while(k--){
-           curr = curr->next;
-           if(!prev) prev = head;
-           else prev = prev->next;
+        while(n--){
+            fast = fast->next;
         }
         
-        prev->next = curr->next;
+        while(fast){
+            if(!prev) prev = head;
+            else prev = prev->next;
+            slow = slow->next;
+            fast = fast->next;
+        }
+        
+        if(!prev) return head->next; // this means the node to be deleted is the head node
+        prev->next = slow->next;
         
         return head;
         
