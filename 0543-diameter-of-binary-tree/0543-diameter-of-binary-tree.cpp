@@ -28,7 +28,6 @@ public:
         // max(height of lst, height of rst) = height
         
         if(!root) return 0;
-        // if(!root->left or !root->right) return height(root);
         
         int diaLST = diameterOfBinaryTree(root->left);
         int diaRST = diameterOfBinaryTree(root->right);
