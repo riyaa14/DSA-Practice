@@ -41,5 +41,7 @@ public:
         result1 /= 2;
         return result1 + result2 + mid;
         
+        // TIME COMPLEXITY: O(N)
+        
     }
 };
