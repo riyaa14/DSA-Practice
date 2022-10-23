@@ -26,7 +26,6 @@ public:
         for(int i=0; i<nums.size(); i++){
             int idxForCurrentNo = abs(nums[i])-1;
             // make number at this idx -ve to mark that this idx is reserved for a number.
-            cout << idxForCurrentNo << " ";
             if(nums[idxForCurrentNo] < 0) duplicate = abs(nums[i]);            
             else nums[idxForCurrentNo]*=(-1);
         }
