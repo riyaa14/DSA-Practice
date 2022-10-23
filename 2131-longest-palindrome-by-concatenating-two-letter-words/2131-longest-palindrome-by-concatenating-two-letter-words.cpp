@@ -15,10 +15,13 @@ public:
         for(auto x : freq){
             
             if(x.first[0] == x.first[1]){
+                
                 if(x.second == 1 or x.second %2 != 0) {
+                    // odd number of occurences for "aa", "bb"..etc type elements
                     mid = 2;
                     result2 += (x.second-1)*2;
                  }else{
+                    // even number of occurences for "aa", "bb"..etc type elements
                     result2 += (x.second)*2;
                 }
             }else{
@@ -32,6 +35,9 @@ public:
             
         }
         
+        // result1 is for pairs like "lc"/"cl", "ab"/"ba" which will be counted twice cause 1st time for "lc" and next when we have "cl" thus we need to divide the result by 2.
+        
+        // This wont happen in case of result2 (for elements like "aa", "bb", etc)
         result1 /= 2;
         return result1 + result2 + mid;
         
