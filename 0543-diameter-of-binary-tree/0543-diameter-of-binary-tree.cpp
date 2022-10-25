@@ -12,12 +12,45 @@
 class Solution {
 public:
     
+//     int height(TreeNode* root){
+        
+//         if(!root) return 0;
+        
+//         int heightLST = height(root->left);
+//         int heightRST = height(root->right);
+        
+//         return max(heightLST, heightRST) + 1;
+        
+//     }
+    
+//     int diameterOfBinaryTree(TreeNode* root) {
+//         // height of lst + height of rst = diameter
+//         // max(height of lst, height of rst) = height
+        
+//         if(!root) return 0;
+        
+//         int diaLST = diameterOfBinaryTree(root->left);
+//         int diaRST = diameterOfBinaryTree(root->right);
+//         int dia = height(root->left) + height(root->right);
+        
+//         return max(dia, max(diaRST, diaLST));
+        
+//     }
+    
+    
+    // FASTER APPROACH
+    
+    // global variable
+    int dia = INT_MIN;
+    
     int height(TreeNode* root){
         
         if(!root) return 0;
         
         int heightLST = height(root->left);
         int heightRST = height(root->right);
+        
+        dia = max(dia, heightLST + heightRST);
         
         return max(heightLST, heightRST) + 1;
         
@@ -29,10 +62,8 @@ public:
         
         if(!root) return 0;
         
-        int diaLST = diameterOfBinaryTree(root->left);
-        int diaRST = diameterOfBinaryTree(root->right);
-        int dia = height(root->left) + height(root->right);
+        height(root);
         
-        return max(dia, max(diaRST, diaLST));
+        return dia;
     }
 };
