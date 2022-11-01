@@ -13,6 +13,7 @@ public:
                 if((j==grid[0].size()-1 and grid[i][j] == 1) or (j==0 and grid[i][j] == -1)) break;
                 if(grid[i][j] == 1 and grid[i][j+1] == -1 or grid[i][j] == -1 and grid[i][j-1] == 1) break;
                 
+                // normal case
                 if(grid[i][j] == 1){
                     i++; j++;
                 }else if(grid[i][j] == -1){
