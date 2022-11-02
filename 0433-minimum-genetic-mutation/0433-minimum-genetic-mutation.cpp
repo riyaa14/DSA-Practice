@@ -27,7 +27,11 @@ public:
                 for(char c: "ACGT"){
                     string newGene = gene;
                     newGene[i] = c;
-                    if(seen.find(newGene) == seen.end() and bankSet.find(newGene) != bankSet.end())  {
+                    
+                    // for genes already seen are already in the queue so we'll skip those.
+                    if(seen.find(newGene) == seen.end() and bankSet.find(newGene) != bankSet.end()){
+                        
+                        // new unseen valid genes will be added to queue for processing later and will be marked as seen.
                         q.push({newGene, level+1});
                         seen.insert(newGene);
                     }
