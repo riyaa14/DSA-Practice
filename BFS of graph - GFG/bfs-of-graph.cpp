@@ -22,7 +22,7 @@ class Solution {
                 
                 // add its children in queue
                 for(auto it: adj[front]){
-                    if(!visited[it]) q.push(it);
+                    q.push(it);
                 }
             }
         }
