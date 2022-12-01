@@ -14,7 +14,7 @@ class Solution {
       ans.push_back(node);
       
       for(auto it: adj[node]){
-          if(!visited[it])  dfs(ans, visited, it, adj);
+          dfs(ans, visited, it, adj);
       }
   }
   
