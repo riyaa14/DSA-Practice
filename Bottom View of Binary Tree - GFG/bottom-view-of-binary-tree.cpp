@@ -91,36 +91,43 @@ Node* buildTree(string str)
 
 
 // } Driver Code Ends
-//Function to return a list containing the bottom view of the given tree.
 
 class Solution {
-  public:
-    vector <int> bottomView(Node *root) {
-        // Your Code Here
+public:
+    // Function to return a list of nodes visible from the top view 
+    // from left to right in Binary Tree.
+    
+    void helper(Node* root, int curr, int depth, map<int, pair<int, int>>& ans) {
+        if (!root) return;
         
-        vector<int> result;
-        map<int, int> m;
-        
-        queue<pair<Node*, int>> q;
-        q.push({root, 0});
-        
-        while(!q.empty()){
-            pair<Node*, int> front = q.front();
-            m[front.second] = front.first->data;
-            
-            q.pop();
-            
-            if(front.first->left) q.push({front.first->left ,front.second-1});
-            if(front.first->right) q.push({front.first->right ,front.second+1});
+        // If the current horizontal distance is not already present in the map,
+        // or the current node is at a higher depth than the previously seen node
+        // at the same horizontal distance, update the map.
+        if (ans.find(curr) == ans.end() or depth >= ans[curr].second) {
+            ans[curr] = {root->data, depth};
         }
         
-        for(auto x: m){
-            result.push_back(x.second);
+        // Traverse the left and right subtrees.
+        helper(root->left, curr - 1, depth + 1, ans);
+        helper(root->right, curr + 1, depth + 1, ans);
+    }
+    
+    vector<int> bottomView(Node *root) {
+        if (!root) return {};
+        
+        map<int, pair<int, int>> ans;
+        helper(root, 0, 0, ans);
+        
+        vector<int> res;
+        for (auto x: ans) {
+            res.push_back(x.second.first);
         }
         
-        return result;
+        return res;
     }
 };
+
+
 
 //{ Driver Code Starts.
 
